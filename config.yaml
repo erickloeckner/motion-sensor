@@ -1,0 +1,11 @@
+---
+debug: false
+chip: /dev/gpiochip0
+gpio_pin: 1
+active_state: 1
+micros_per_loop: 250000
+hold_micros: 10000000
+cooldown_micros: 1000000
+retrigger: true
+on_action: ./on_action.sh
+off_action: ./off_action.sh
