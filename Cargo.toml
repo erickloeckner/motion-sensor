@@ -1,0 +1,9 @@
+[package]
+name = "motion-sensor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+gpio-cdev = "0.6.0"
+serde = { version = "1.0.218", features = ["derive"] }
+serde_yaml = "0.9.34"
