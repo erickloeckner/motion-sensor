@@ -64,7 +64,7 @@ fn main() {
                     if config.debug { println!("state off -> on") }
                 }
             }
-            MainState::On => {                                                                                                                                                                            [15/1899]
+            MainState::On => {
                 let last = last_active_time
                     .elapsed()
                     .as_micros();
