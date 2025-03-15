@@ -20,7 +20,7 @@ struct Config {
     off_action: String,
 }
 
-enum MainState {                                                                                                                                                                                          [59/1899]
+enum MainState {
     Off,
     On,
     Cooldown,
