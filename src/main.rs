@@ -97,3 +97,4 @@ fn main() {
         let delay_time = config.micros_per_loop.saturating_sub(loop_start.elapsed().as_micros() as u32);
         thread::sleep(Duration::from_micros(delay_time.into()));
     }
+}
