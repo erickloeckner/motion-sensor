@@ -1,21 +1,21 @@
-use std::fs;                                                                                                                                                                                                       
-use std::process::Command;                                                                                                                                                                                         
-use std::thread;                                                                                                                                                                                                   
-use std::time::{Duration, Instant};                                                                                                                                                                                
-                                                                                                                                                                                                                   
-use gpio_cdev::{Chip, LineRequestFlags};                                                                                                                                                                           
+use std::fs;
+use std::process::Command;
+use std::thread;
+use std::time::{Duration, Instant};
+
+use gpio_cdev::{Chip, LineRequestFlags};
 use serde::Deserialize;
 
-#[derive(Debug, PartialEq, Deserialize)]                                                                                                                                                                           
-struct Config {                                                                                                                                                                                                    
-    debug: bool,                                                                                                                                                                                                   
-    chip: String,                                                                                                                                                                                                  
-    gpio_pin: u32,                                                                                                                                                                                                 
-    active_state: u8,                                                                                                                                                                                              
-    micros_per_loop: u32,                                                                                                                                                                                          
-    hold_micros: u32,                                                                                                                                                                                              
-    cooldown_micros: u32,                                                                                                                                                                                          
-    retrigger: bool,                                                                                                                                                                                               
+#[derive(Debug, PartialEq, Deserialize)]
+struct Config {
+    debug: bool,
+    chip: String,
+    gpio_pin: u32,
+    active_state: u8,
+    micros_per_loop: u32,
+    hold_micros: u32,
+    cooldown_micros: u32,
+    retrigger: bool,
     on_action: String,
     off_action: String,
 }
