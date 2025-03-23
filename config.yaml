@@ -3,7 +3,9 @@ debug: false
 chip: /dev/gpiochip0
 gpio_pin: 1
 active_state: 1
-micros_per_loop: 250000
+micros_per_loop: 100000
+debounce: false
+debounce_micros: 0
 hold_micros: 10000000
 cooldown_micros: 1000000
 retrigger: true
