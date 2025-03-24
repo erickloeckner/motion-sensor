@@ -62,7 +62,7 @@ fn main() -> std::result::Result<(), gpio_cdev::Error> {
             match state {
                 MainState::Off => {
                     if let Ok(gpio) = rx.try_recv() {
-                        //println!("message: {}", gpio);
+                        if config.debug { println!("--message: {}", gpio) }
                         if gpio == true {
                             last_active_time = Instant::now();
                             if config.debounce == true {
@@ -84,7 +84,7 @@ fn main() -> std::result::Result<(), gpio_cdev::Error> {
                 MainState::Debounce => {
                     let last = last_active_time.elapsed().as_micros();
                     if let Ok(gpio) = rx.try_recv() {
-                        //println!("message: {}", gpio);
+                        if config.debug { println!("--message: {}", gpio) }
                         if gpio == true {
                             state = MainState::On;
                             last_active_time = Instant::now();
@@ -107,6 +107,7 @@ fn main() -> std::result::Result<(), gpio_cdev::Error> {
                 MainState::On => {
                     let last = last_active_time.elapsed().as_micros();
                     if let Ok(gpio) = rx.try_recv() {
+                        if config.debug { println!("--message: {}", gpio) }
                         if gpio == true && config.retrigger == true {
                             last_active_time = Instant::now();
                         }
@@ -126,7 +127,9 @@ fn main() -> std::result::Result<(), gpio_cdev::Error> {
                 }
                 MainState::Cooldown => {
                     let start = cooldown_start.elapsed().as_micros();
-                    if let Ok(_) = rx.try_recv() { }
+                    if let Ok(gpio) = rx.try_recv() {
+                        if config.debug { println!("--message: {}", gpio) }
+                    }
                     if start >= config.cooldown_micros as u128 {
                         state = MainState::Off;
                         if config.debug { println!("state cooldown -> off") }
